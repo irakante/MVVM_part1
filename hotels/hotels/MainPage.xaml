@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="hotels.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:hotels">
+    <ScrollView>
+        <StackLayout VerticalOptions="Start">
+            <Label Text="Number" />
+            <Entry
+                FontSize="Medium"
+                Keyboard="Numeric"
+                Text="{Binding CurrentRoom.Number}" />
+            <Label Text="FreePlace" />
+
+            <Entry
+                FontSize="Medium"
+                Keyboard="Numeric"
+                Text="{Binding CurrentRoom.FreePlace}" />
+
+            <Button Clicked="Button_Clicked" Text="Добавить" />
+
+            <ListView
+                x:Name="roomList"
+                HasUnevenRows="True"
+                ItemsSource="{Binding RoomsCollection}"
+                SelectedItem="{Binding SelectedRoom, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout>
+                                    <Label FontSize="Medium" Text="{Binding Number, StringFormat='Room # {0}'}" />
+                                    <Label FontSize="Small" Text="{Binding FreePlace}" />
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
